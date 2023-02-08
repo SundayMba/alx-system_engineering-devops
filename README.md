@@ -1,2 +1,2 @@
-#ALX-software engineering
-this is the root directory
+#Shell basics
+this file describe how to work with shell and the terminals
