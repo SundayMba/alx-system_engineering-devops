@@ -1,0 +1,14 @@
+total 44
+-rwxr--r-- 1 root root 32 Feb 13 07:39 0-hello_world
+-rwxr--r-- 1 root root 28 Feb 13 07:58 1-confused_smiley
+-rwxr--r-- 1 root root 28 Feb 13 08:05 2-hellofile
+-rwxr--r-- 1 root root 39 Feb 13 08:04 3-twofiles
+-rwxr--r-- 1 root root 35 Feb 13 08:08 4-lastlines
+-rwxr--r-- 1 root root 35 Feb 13 08:11 5-firstlines
+-rwxr--r-- 1 root root 40 Feb 13 11:59 6-third_line
+-rwxr--r-- 1 root root 99 Feb 13 13:59 7-file
+-rwxr--r-- 1 root root 36 Feb 13 14:03 8-cwd_state
+-rw-r--r-- 1 root root 12 Feb 13 14:01 \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+-rw-r--r-- 1 root root  0 Feb 13 14:10 last-line
+-rw-r--r-- 1 root root 43 Feb 13 07:35 README.md
+-rw-r--r-- 1 root root 43 Feb 13 07:35 README.md
