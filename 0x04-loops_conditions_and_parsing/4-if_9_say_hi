@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# this script print "Best School" and "Hi" 10 times
+
+n=1
+msg="Best School"
+while [ $n -le 10 ]
+do
+	echo "$msg"
+	if [ $n -eq 9 ]
+	then
+		echo "Hi"
+	fi
+	(( n++ ))
+done
