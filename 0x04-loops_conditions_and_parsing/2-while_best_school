@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# this program print "Best School" 10 times using while loop
+
+n=1
+info="Best School"
+while [ $n -le 10 ]
+do
+	echo "$info"
+	(( n++ ))
+done
