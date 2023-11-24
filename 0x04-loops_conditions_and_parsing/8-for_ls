@@ -11,5 +11,7 @@ for file in *; do
 		 name="${file#*-}"
 
 		 echo "$name"
+	else
+		echo "$file"
 	fi
 done
