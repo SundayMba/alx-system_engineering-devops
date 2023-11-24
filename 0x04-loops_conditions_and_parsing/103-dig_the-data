@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# sorting apache access log file and printing no of occurrence
+
 
 log_file="apache-access.log"
 
