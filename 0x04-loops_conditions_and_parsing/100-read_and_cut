@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# read contents of the /etc/passwd file
+
+file_location="/etc/passwd"
+
+while read -r line ; do
+	username=$(echo "$line" | cut -d ":" -f 1)
+	uid=$(echo "$line" | cut -d ":" -f 3)
+	home=$(echo "$line" | cut -d ":" -f 6)
+
+	#display the information
+	echo "$username:$uid:$home"
+done < "$file_location"
