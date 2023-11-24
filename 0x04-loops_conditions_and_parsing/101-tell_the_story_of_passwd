@@ -4,8 +4,6 @@
 file="/etc/passwd"
 
 IFS=:
-while read -r username pw uid gid _ home cmd ; do
-	echo "The user $username is part of the $gid gang, lives in $home and \
-		and rides $cmd. $uid 's place is protected by the passcode \
-		$pw, more info about the user here: $uid"
+while read -r username pw uid gid uid_info home cmd ; do
+	echo "The user $username is part of the $gid gang, lives in $home and rides $cmd. $uid's place is protected by the passcode $pw, more info about the user here: $uid_info"
 done < "$file"
