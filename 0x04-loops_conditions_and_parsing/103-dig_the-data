@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+log_file="apache-access.log"
+
+# Use awk to group visitors by IP and HTTP status code, and count occurrences
+
+awk '{ ip_code_count[$1" "$9]++ } END { for (entry in ip_code_count) print ip_code_count[entry], entry }' "$log_file" | sort -nr
+
