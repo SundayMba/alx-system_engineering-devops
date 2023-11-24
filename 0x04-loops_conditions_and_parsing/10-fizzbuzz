@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Write a Bash script that displays numbers from 1 to 100.
+
+for (( n=1; n<=100; n++ )); do
+	if [[ $(( n % 15 )) == 0 ]]; then
+		echo "FizzBuzz"
+	elif [[ $(( n % 5 )) == 0 ]]; then
+		echo "Buzz"
+	elif [[ $(( n % 3 )) == 0 ]]; then
+		echo "Fizz"
+	else
+		echo "$n"
+	fi
+done
