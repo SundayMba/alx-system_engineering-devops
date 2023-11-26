@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#script that create a file and print messsage to stdout
+
+file="/var/run/myscript.pid"
+
+terminate(){
+	echo "I hate the kill command"
+	clean_up_exit
+}
+
+interrupt(){
+	echo "Y U no love me?!"
+}
+
+clean_up_exit(){
+	sudo rm -f "$file"
+	exit
+}
+
+echo $$ | sudo touch "$file"
+
+trap terminate  SIGTERM
+trap interrupt SIGINT
+trap clean_up_exit SIGQUIT
+
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
+
+
