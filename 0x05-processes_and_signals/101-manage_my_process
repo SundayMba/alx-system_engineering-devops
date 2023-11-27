@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# bash init.d script that manages other script
+
+manage_file="manage_my_process"
+file_pid="/var/run/my_process.pid"
+
+#grab the first argument from the commandline
+arg=$1
+
+if [ "$arg" != "start" ] && [ "$arg" != "stop" ] && [ "$arg" != "restart" ];
+then
+	echo "Usage: manage_my_process {start|stop|restart}"
+else
+	if [ "$arg" == "start" ] ; then
+		./"$manage_file" & #start the process in the background
+		my_process_pid=$! #grab the pid of the last background process
+		echo "$my_process_pid" | sudo tee "$file_pid" > /dev/null
+		echo "manage_my_process started"
+	elif [ "$arg" == "stop" ] ; then
+		pkill -f "$manage_file"
+		sudo rm -f "$file_pid"
+		echo "manage_my_process stopped"
+	elif [ "$arg" == "restart" ] ; then
+		pkill -f "$manage_file" #stops the process
+		sudo rm -f "$file_pid" #deletes a file
+		./"$manage_file" & #start the file again in the background
+		pid=$!
+		echo "$pid" | sudo tee "$file_pid" > /dev/null #write pid to file
+		echo "manage_my_process restarted"
+	fi
+
+fi
