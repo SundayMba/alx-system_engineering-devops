@@ -11,10 +11,14 @@ cp "$hosts_file" "$hosts_file.bak"
 # Update hosts file with the specified localhost configuration
 if grep -q "^127.0.0.1" "$hosts_file.bak"; then
 	sed -i "/^127.0.0.1/s/^127.0.0.1.*/$localhost_entry/" "$hosts_file.bak"
+else
+	echo "127.0.0.2 localhost" >> "$hosts_file"
 fi
 if grep -q "facebook.com" "$hosts_file.bak"; then
 	sed -i "s/facebook.com/$facebook_entry/" "$hosts_file.bak"
+else
+	echo "8.8.8.8 facebook.com" >> "$hosts_file"
 fi
 
-echo "$hosts_file.bak" > "$hosts_file"
+cp "$hosts_file.bak" "$hosts_file"
 
