@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# program that displays listening sockets and thier pid/program name
+
+netstat -pl
