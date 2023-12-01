@@ -3,7 +3,7 @@
 
 hosts_file="/etc/hosts"
 localhost_entry="127.0.0.2 localhost"
-facebook_entry="8.8.8.8 facebook"
+facebook_entry="8.8.8.8 facebook.com"
 
 # Backup the current hosts file
 cp "$hosts_file" "$hosts_file.bak"
@@ -12,12 +12,12 @@ cp "$hosts_file" "$hosts_file.bak"
 if grep -q "^127.0.0.1" "$hosts_file.bak"; then
 	sed -i "/^127.0.0.1/s/^127.0.0.1.*/$localhost_entry/" "$hosts_file.bak"
 else
-	echo "127.0.0.2 localhost" >> "$hosts_file"
+	echo "$localhost_entry" >> "$hosts_file.bak"
 fi
 if grep -q "facebook.com" "$hosts_file.bak"; then
-	sed -i "s/facebook.com/$facebook_entry/" "$hosts_file.bak"
+	sed -i "s/.*facebook.com/$facebook_entry/" "$hosts_file.bak"
 else
-	echo "8.8.8.8 facebook.com" >> "$hosts_file"
+	echo "$facebook_entry" >> "$hosts_file.bak"
 fi
 
 cp "$hosts_file.bak" "$hosts_file"
