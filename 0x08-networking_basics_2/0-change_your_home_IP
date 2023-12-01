@@ -14,8 +14,8 @@ if grep -q "^127.0.0.1" "$hosts_file.bak"; then
 else
 	echo "$localhost_entry" >> "$hosts_file.bak"
 fi
-if grep -q "facebook.com" "$hosts_file.bak"; then
-	sed -i "s/.*facebook.com/$facebook_entry/" "$hosts_file.bak"
+if grep -q "^157.240.11.35" "$hosts_file.bak"; then
+	sed -i "s/^157.240.11.35/$facebook_entry/" "$hosts_file.bak"
 else
 	echo "$facebook_entry" >> "$hosts_file.bak"
 fi
