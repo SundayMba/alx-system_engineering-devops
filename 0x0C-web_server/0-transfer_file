@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# program to copy file from local to remote
+
+if [ "$#"  -lt 3 ];
+then
+	echo 'Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY'
+else
+PATH_TO_FILE="$1"
+SERVER_IP="$2"
+USERNAME="$3"
+SSH_KEY_PATH="$4"
+scp -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$PATH_TO_FILE" "$USERNAME@$SERVER_IP:~/"
+fi
