@@ -8,10 +8,13 @@
 apt-get update
 apt-get -y install nginx
 
-mkdir /etc/nginx/html
+if [ ! -e '/etc/nginx/html' ]; then
+	mkdir /etc/nginx/html
+fi
 touch /etc/nginx/html/index.html
 echo 'Hello World!' > /etc/nginx/html/index.html
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 sed -i 's@/var/www/html@/etc/nginx/html@g' /etc/nginx/sites-enabled/default
 
+service apache2 stop
 service nginx restart
