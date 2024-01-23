@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # program to copy file from local to remote
 
 if [ "$#"  -lt 4 ];
