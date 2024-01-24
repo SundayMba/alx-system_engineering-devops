@@ -16,9 +16,10 @@ require => Exec['apt-update'],
 }
 
 # create a file resource for index html
-file {'/etc/nginx/index.html':
+file {'/etc/nginx/html/index.html':
 ensure  => present,
-content => 'Hello World!',
+content => 'Hello World!
+',
 }
 
 
@@ -28,7 +29,7 @@ ensure  => present,
 content => "server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        root /etc/nginx/;
+        root /etc/nginx/html/;
         index index.html index.htm;
 
         location /redirect_me {
