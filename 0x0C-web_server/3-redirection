@@ -19,7 +19,7 @@ printf %s "server {
 	location /redirect_me {
 		return 301 https://youtube.com/;
 	}
-}" > /etc/nginx/sites-available/default
+}" > /etc/nginx/sites-enabled/default
 
 service apache2 stop
 service nginx restart
