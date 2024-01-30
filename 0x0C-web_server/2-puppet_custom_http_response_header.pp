@@ -16,10 +16,9 @@ require => Exec['apt-update'],
 }
 
 # create a file resource for index html
-file {'/etc/nginx/html/index.html':
+file {'/var/www//html/index.html':
 ensure  => present,
-content => 'Hello World!
-',
+content => 'Hello World!',
 }
 
 
@@ -29,8 +28,9 @@ ensure  => present,
 content => "server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        root /etc/nginx/html/;
+        root /var/www/html;
         index index.html index.htm;
+        add_header X-Served-By $HOSTNAME;
 
         location /redirect_me {
                 return 301 https://youtube.com/;
