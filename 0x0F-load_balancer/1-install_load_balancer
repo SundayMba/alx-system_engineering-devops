@@ -31,5 +31,6 @@ backend back_server
 EOL
 
 # Restart HAProxy to apply the changes
-service haproxy restart
+systemctl enable haproxy
+systemctl restart haproxy
 
