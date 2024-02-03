@@ -9,11 +9,21 @@ apt-get update
 apt-get install -y haproxy=2.8.\*
 
 # Backup the default HAProxy configuration file
-cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
 # Create a new HAProxy configuration file
 tee /etc/haproxy/haproxy.cfg > /dev/null <<EOL
+global
+    log /dev/log   local0
+    log /dev/log   local1 notice
+    maxconn  2000
+    user     haproxy
+    group    haproxy
 defaults
+    log     global
+    option  httplog
+    option  dontlognull
+    retries 3
     mode    http
     timeout connect 5000
     timeout client  50000
@@ -21,7 +31,7 @@ defaults
     timeout http-request  50000
 
 frontend front_server
-    bind :80
+    bind *:80
     default_backend back_server
 
 backend back_server
@@ -31,6 +41,4 @@ backend back_server
 EOL
 
 # Restart HAProxy to apply the changes
-systemctl enable haproxy
-systemctl restart haproxy
-
+service haproxy start
