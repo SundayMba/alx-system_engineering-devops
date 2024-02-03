@@ -10,24 +10,24 @@ ensure  => installed,
 }
 
 # create a file resource for index html
-file {'/etc/nginx/html/index.html':
+file {'/var/www/html/index.html':
 ensure  => present,
 content => 'Hello World!',
 }
 
 # create a file for 404 error page
-file {'/etc/nginx/html/error_404.html':
+file {'/var/www/html/error_404.html':
 ensure   => present,
 content  => "Ceci n'est pas une page",
 }
 
-# defines the content of the config file in an embedded ruby file .erb
-file {'/etc/nginx/sites-enabled/default':
+# create a default sites for nginx
+file {'/etc/nginx/sites-available/default':
 ensure  => present,
 content => "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
-	root /etc/nginx/html;
+	root /var/www/html;
 	index index.html index.htm;
 
 	location /redirect_me {
@@ -36,7 +36,7 @@ content => "server {
 
 	error_page 404 /error_404.html;
 	location /404 {
-		root /etc/nginx/html;
+		root /var/www/html;
 		internal;
 	}
     }",
@@ -44,8 +44,19 @@ require => Package['nginx'],
 notify  => Service['nginx'],
 }
 
+file { '/etc/nginx/sites-enabled/default':
+ensure   => link,
+target   => '/etc/nginx/sites-available/default',
+notify   => Service['nginx'],
+}
+
 service {'nginx':
 ensure    => running,
 enable    => true,
 subscribe => File['/etc/nginx/sites-enabled/default'],
+}
+
+service { 'nginx_reload':
+name    => 'nginx',
+ensure  => reloaded,
 }
