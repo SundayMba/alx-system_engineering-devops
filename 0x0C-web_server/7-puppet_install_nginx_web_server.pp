@@ -55,8 +55,3 @@ ensure    => running,
 enable    => true,
 subscribe => File['/etc/nginx/sites-enabled/default'],
 }
-
-service { 'nginx_reload':
-name    => 'nginx',
-ensure  => reloaded,
-}
