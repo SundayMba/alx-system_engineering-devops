@@ -16,7 +16,7 @@ require => Exec['apt-update'],
 }
 
 # create a file resource for index html
-file {'/var/www//html/index.html':
+file {'/var/www/html/index.html':
 ensure  => present,
 content => 'Hello World!',
 }
