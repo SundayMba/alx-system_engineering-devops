@@ -5,12 +5,11 @@
 #+ The value of the custom HTTP header must be the hostname of the server Nginx is running
 
 apt-get update
-apt-get upgrade
 apt-get -y install nginx
 
 mkdir -p /var/www/html
 touch /var/www/html/index.html
-echo "Hello World, served from $HOSTNAME" > /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 touch /var/www/html/404.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
@@ -30,6 +29,6 @@ printf %s "server {
 		root /var/www/html;
 		internal;
 	}
-}" > /etc/nginx/sites-available/default
+}" > /etc/nginx/sites-enabled/default
 
 service nginx restart
