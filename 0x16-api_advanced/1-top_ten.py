@@ -12,11 +12,11 @@ def top_ten(subreddit):
     params = {"limit": 10}
     response = requests.get(url, headers=headers, allow_redirects=False,
                             params=params)
-    if response.status_code == 200:
-        response = response.json()
-        children = response.get("data").get("children")
-        for child in children:
-            title = child.get("data").get("title")
-            print(title)
-    else:
+    if response.status_code == 404 or response.status_code == 302:
         print("None")
+        return
+    response = response.json()
+    children = response.get("data").get("children")
+    for child in children:
+        title = child.get("data").get("title")
+        print(title)
