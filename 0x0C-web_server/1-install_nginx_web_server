@@ -10,12 +10,15 @@
 apt-get update
 apt-get -y install nginx
 
-if [ ! -e '/var/www/custom/html' ]; then
-	mkdir -p /var/www/custom/html
+path="/var/www/index/html"
+file="/var/www/index/html/index.html"
+
+if [ ! -e "$path" ]; then
+	mkdir -p $path
 fi
 
-echo 'Hello World!' >> /var/www/custom/html/index.html
-sed -i 's@/var/www/html@/var/www/custom/html@g' /etc/nginx/sites-available/default
+echo 'Hello World!' > $file
+sed -i 's@/var/www/html@/var/www/index/html@g' /etc/nginx/sites-available/default
 sed -i 's/8080/80/g' /etc/nginx/sites-available/default
 
 service nginx restart
