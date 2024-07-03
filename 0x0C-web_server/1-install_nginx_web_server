@@ -22,4 +22,5 @@ echo 'Hello World!' > $file
 sed -i 's@/var/www/custom/html@/var/www/index/html@g' /etc/nginx/sites-available/default
 sed -i 's/8080/80/g' /etc/nginx/sites-available/default
 
+service apache2 stop
 service nginx restart
