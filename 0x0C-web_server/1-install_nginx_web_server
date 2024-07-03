@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
-# program to install nginx on a server
-# > Install nginx on your web-01 server
-# > Nginx should be listening on port 80
-# > Nginx should return 'hello World!' when querying the server
-
+# Program to auto install Nginx and configure it on linux server
+# 1 => update the linux server
+# 2 => install nginx and pass in -y to it
+# 3 => create a new document root directory /var/www/custom/html if not exist
+# 4 => create a file to content static content index.html inside the created directory
+# 5 => edit the nginx sites-available config file by changing the root path from /var/www/html to /var/www/custom/html
+# 6 => restart the nginx server
 
 apt-get update
 apt-get -y install nginx
 
-if [ ! -e '/etc/nginx/html' ]; then
-	mkdir /etc/nginx/html
-fi
-touch /etc/nginx/html/index.html
-echo 'Hello World!' > /etc/nginx/html/index.html
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-sed -i 's@/var/www/html@/etc/nginx/html@g' /etc/nginx/sites-enabled/default
+path="/var/www/index/html"
+file="/var/www/index/html/index.html"
 
-service apache2 stop
+if [ ! -e "$path" ]; then
+	mkdir -p $path
+fi
+
+touch $file
+echo 'Hello World!' > $file
+sed -i 's@/var/www/custom/html@/var/www/index/html@g' /etc/nginx/sites-available/default
+sed -i 's/8080/80/g' /etc/nginx/sites-available/default
+
 service nginx restart
