@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 # redirection - The direction must be a 301 Moved permanently
 
-apt-get update
-apt-get -y install nginx
-
-FILE_PATH=/etc/nginx/html
-if [ ! -e "$FILE_PATH" ]; then
-	mkdir "$FILE_PATH"
+if [ ! -e "/usr/sbin/nginx" ]; then
+	apt-get update
+	apt-get -y install nginx
 fi
-touch "$FILE_PATH"/index.html
-echo "Hello World!" > "$FILE_PATH"/index.html
+FILE_PATH=/var/www/html
 printf %s "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -19,7 +15,6 @@ printf %s "server {
 	location /redirect_me {
 		return 301 https://youtube.com/;
 	}
-}" > /etc/nginx/sites-enabled/default
+}" > /etc/nginx/sites-available/default
 
-service apache2 stop
 service nginx restart
