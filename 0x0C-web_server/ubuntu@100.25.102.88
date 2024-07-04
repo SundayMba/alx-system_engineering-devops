@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # redirection - The direction must be a 301 Moved permanently
 
+apt-get update
+apt-get -y install nginx
+
 FILE_PATH=/var/www/html
 if [ ! -e "/usr/sbin/nginx" ]; then
 	apt-get update
@@ -19,6 +22,10 @@ printf %s "server {
 		return 301 https://youtube.com/;
 	}
 	error_page 404 /custom_404_page.html;
+	location /404 {
+		root $FILE_PATH;
+		internal;
+	}
 }" > /etc/nginx/sites-available/default
 
 
