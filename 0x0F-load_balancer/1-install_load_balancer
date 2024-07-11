@@ -36,8 +36,8 @@ frontend front_server
 
 backend back_server
     balance roundrobin
-    server 246453-web-01 100.25.10.250:80 check
-    server 246453-web-02 100.25.155.18:80 check
+    server 246453-web-01 100.25.102.88:80 check
+    server 246453-web-02 100.26.57.193:80 check
 EOL
 
 # Restart HAProxy to apply the changes
