@@ -20,7 +20,7 @@ defaults
 
 frontend www-http
     bind *:80
-    http-request add-header X-Forwarded-Proto http
+    http-request add-header X-Forwarded-Proto https
     default_backend www-backend
 
 frontend www-https
