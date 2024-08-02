@@ -1,0 +1,2 @@
+## MYSQL REPLICATION TASK
+ 0. *Install MySQL*
